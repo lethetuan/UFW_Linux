@@ -71,9 +71,13 @@ sudo ufw reload
 
 
 ---
+<img width="1024" height="622" alt="image" src="https://github.com/user-attachments/assets/ebf0c1c2-c232-48c0-8983-85b7c4f44af2" />
+
 **Một số port và dịch vụ thông dụng:**
 - **22/tcp**: SSH
 - **80/tcp**: HTTP (Web)
 - **443/tcp**: HTTPS (Web bảo mật)
 - **21/tcp**: FTP
 - **3306/tcp**: MySQL
+<img width="734" height="1024" alt="image" src="https://github.com/user-attachments/assets/04cb8205-a19c-41e2-8896-18d7a96e91f8" />
+
