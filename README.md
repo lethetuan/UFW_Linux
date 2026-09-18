@@ -1,6 +1,4 @@
-# UFW_Linux
-
-# Hướng dẫn cơ bản về UFW (Uncomplicated Firewall)
+# Hướng dẫn cơ bản về UFW (Uncomplicated Firewall) trên hệ điều hành Linux
 
 UFW (Uncomplicated Firewall) là một công cụ quản lý tường lửa mặc định trên các bản phân phối Linux như Ubuntu và Debian. Nó được thiết kế với giao diện dòng lệnh tối giản nhằm giúp đơn giản hóa việc cấu hình tường lửa phức tạp.
 
@@ -10,22 +8,22 @@ Firewall trên Ubuntu cũng tương tự như Windows Firewall trên hệ điề
 
 **Kiểm tra tình trạng hoạt động của UFW**
 ```bash
-systemctl status ufw
+sudo systemctl status ufw
 ```
 
 **Bắt đầu (start) dịch vụ UFW**
 ```bash
-systemctl start ufw
+sudo systemctl start ufw
 ```
 
 **Cho phép UFW tự động start khi server khởi động lại**
 ```bash
-systemctl enable ufw
+sudo systemctl enable ufw
 ```
 
 **Không cho UFW tự động start khi server khởi động lại**
 ```bash
-systemctl disable ufw
+sudo systemctl disable ufw
 ```
 
 ## Cấu hình cho phép kết nối (Allow)
@@ -35,21 +33,42 @@ systemctl disable ufw
 **Demo cấu hình cho phép kết nối theo tên dịch vụ/protocol**
 *(Ví dụ: chữ "ssh" - có thể thay bằng tên các dịch vụ khác muốn mở)*
 ```bash
-ufw allow ssh
+sudo ufw allow ssh
 ```
 
 **Demo cấu hình cho phép kết nối đến server linux theo port cụ thể**
 *(Ví dụ: mở port cho dịch vụ web HTTP và HTTPS)*
 ```bash
-ufw allow 80/tcp
-ufw allow 443/tcp
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
 ```
 
 **Khởi động lại để áp dụng cấu hình (Apply config)**
 ```bash
-systemctl restart ufw
+sudo systemctl restart ufw
 ```
 *(Lưu ý: Bạn cũng có thể dùng lệnh `ufw reload` để tải lại cấu hình tường lửa mà không cần khởi động lại toàn bộ dịch vụ).*
+
+**Cách này sẽ gỡ bỏ hoàn toàn cấu hình "allow" mà bạn đã thêm vào trước đó, đưa cổng/dịch vụ đó về trạng thái mặc định của tường lửa (thường là chặn từ bên ngoài vào).
+
+Kiểm tra danh sách trạng thái các cổng firewall đang cấu hình
+```bash
+sudo ufw status
+```
+
+**Cách 1: Xóa theo tên dịch vụ hoặc port. Ví dụ xóa quyền cho phép dịch vụ SSH. Cú pháp rất đơn giản, bạn chỉ cần thêm chữ delete vào trước lệnh allow cũ.
+```bash
+sudo ufw delete allow ssh
+sudo ufw reload
+```
+
+**Cách 2: Xóa quyền cho phép port 80
+
+```bash
+ufw delete allow 80/tcp
+sudo ufw reload
+```
+
 
 ---
 **Một số port và dịch vụ thông dụng:**
