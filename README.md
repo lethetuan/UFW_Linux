@@ -65,7 +65,7 @@ sudo ufw reload
 **Cách 2: Xóa quyền cho phép port 80
 
 ```bash
-ufw delete allow 80/tcp
+sudo ufw delete allow 80/tcp
 sudo ufw reload
 ```
 
